@@ -1,0 +1,62 @@
+.movie-poster{
+    width: 100%;
+    height: 60vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.movie-poster img{
+    width: 100%;
+}
+
+.bk{
+    color: #ff0707;
+}
+
+.movie-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sypnopsis p, .mn p{
+    color: #9b9494;
+
+}
+
+
+.rr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie-tags{
+    margin:5px;
+    padding:10px;
+    border-radius: 8px;
+    background-color:#242526;
+
+}
+
+.dm{
+    background-color:#edf0f5;
+    /* border: 1px solid; */
+}
+
+.button{
+    background-color: #ff0707;
+    border-radius: 20px;
+}
+
+.watch-btn{
+    padding: 15px;
+    width: 100%;
+    border-radius: 15px;
+    color: #fff;
+    background-color:transparent;
+    border: 1px solid #ff0707;
+    ;
+}

@@ -1,0 +1,39 @@
+.profile {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-img {
+    width: 60px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  .profile {
+    padding: 10px 20px;
+  }
+  .username {
+    padding: 0 15px;
+  }
+  .username p {
+    margin: 0;
+  }
+  
+  .name {
+    font-weight: bold;
+  }
+  
+  .right {
+  
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .greetings {
+    color: #f6f6f6;
+  }
+  
+  .left{
+    width: 70%;
+  }
