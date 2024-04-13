@@ -16,6 +16,12 @@ const Nav = () => {
           <ul className="icon-list">
             <li>
               <NavLink
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
                 to="/"
                 className={({ isActive }) =>
                   isActive ? "active" : "notactive"
@@ -26,6 +32,12 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
                 to="/list"
                 className={({ isActive }) =>
                   isActive ? "active" : "notactive"
@@ -38,6 +50,12 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
                 to="/bookmarks"
                 className={({ isActive }) =>
                   isActive ? "active" : "notactive"
@@ -48,6 +66,12 @@ const Nav = () => {
             </li>
             <li>
               <NavLink
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
                 to="/profile"
                 className={({ isActive }) =>
                   isActive ? "active" : "notactive"

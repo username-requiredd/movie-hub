@@ -7,40 +7,33 @@ const UserProfile = () => {
     "https://img.icons8.com/bubbles/100/000000/user.png"
   );
   useEffect(() => {
-    // Load profile picture from local storage when the component mounts
     const savedProfilePicture = localStorage.getItem("profilePicture");
     if (savedProfilePicture) {
       setProfilePicture(savedProfilePicture);
     }
   }, []);
 
-  // Function to handle file input change
-
   const handleFileChange = (event) => {
-    const file = event.target.files[0]; // Get the first selected file
+    const file = event.target.files[0];
     if (file) {
-      // Check if a file is selected
-      const reader = new FileReader(); // Create a new FileReader instance
+      const reader = new FileReader();
       reader.onload = () => {
-        // Callback function to handle file reading
         const imageDataUrl = reader.result;
-        setProfilePicture(imageDataUrl); // Update the profile picture state with the data URL of the selected file
-        // Save the image data URL in local storage
+        setProfilePicture(imageDataUrl);
         localStorage.setItem("profilePicture", imageDataUrl);
       };
-      reader.readAsDataURL(file); // Read the file as a data URL
+      reader.readAsDataURL(file);
     }
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add your code here to upload the selected image to the server
   };
 
   return (
     <div
       className="page-content page-container pt-5"
       id="page-content"
-      style={{ height: "100vh" }}
+      style={{ height: "100%", paddingBottom: "100px" }}
     >
       <div className="">
         <div className="row container d-flex justify-content-center mx-auto">
@@ -82,11 +75,11 @@ const UserProfile = () => {
                     </h6>
                     <div className="row">
                       <div className="col-sm-6">
-                        <p className="m-b-10 f-w-600">Email</p>
+                        <p className="m-b-10 f-w-600">Name</p>
                         <h6 className="text-muted f-w-400">rntng@gmail.com</h6>
                       </div>
                       <div className="col-sm-6">
-                        <p className="m-b-10 f-w-600">Phone</p>
+                        <p className="m-b-10 f-w-600">Email</p>
                         <h6 className="text-muted f-w-400">98979989898</h6>
                       </div>
                     </div>

@@ -9,52 +9,23 @@ import Card from "../../components/card/Card";
 import Nav from "../../components/Nav/Nav";
 import SkeletonLoader from "../../components/loader/Loader";
 const Hero = () => {
+  const [search, setSearch] = useState("");
   const API_KEY = "bd6028a3ff6785a5ad7350ab134f1ee7";
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-  const tv = `
-  https://api.themoviedb.org/3/movie/693134/videos?api_key=${API_KEY}`;
-  const trendingMovies = `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`;
-  const { movie: show, error, loading } = UseFetch(tv);
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=7`;
+  const trendingMovies = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=1`;
+  const popular = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=8`;
+  const searchEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
+  const { movies, error, loading } = UseFetch(
+    search === "" ? popular : searchEndpoint
+  );
   const { movies: discover, error: errr, loading: load } = UseFetch(url);
   const {
     movies: trending,
     error: err,
     loading: ld,
   } = UseFetch(trendingMovies);
-  console.log("tv shows: ", show);
-  // console.log("tv shows: ", discover.results[0].id);
-  // console.log(trending, show, discover);
   const { darkMode } = useDarkMode();
-  console.log("darkmood", darkMode);
-  async function fetchData() {
-    const url = "https://api.themoviedb.org/3/movie/693134/videos?";
-    const apiKey =
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZjEzOGYwZTdlYzg3NTMwMzE3NTI5MDZkMTU0NmJmMiIsInN1YiI6IjY2MTg1YWVjMGYwZGE1MDE3Y2RlYTcyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WnRTvQbUgOWMCbSK0ckZnkptQt1ny51LaHvuVU5RPbA";
-
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          accept: "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log(data);
-      return data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
-  // Call the function to fetch data
-  fetchData();
-
+  console.log(search, movies);
   return (
     <>
       <Heading />
@@ -62,7 +33,8 @@ const Hero = () => {
         <div className="search">
           <input
             type="text"
-            // className={`${darkMood ? "cc" : ""}`}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
             placeholder="Search movie..."
             style={{
               width: "100%",
@@ -75,87 +47,171 @@ const Hero = () => {
             }}
           />
         </div>
-        <p className="px-2 font-weight-bold">Trending Movies </p>
-        <div className="scroll-container">
-          {err ? (
-            <div className="container">
-              <p className="pt-3">
-                Error getting data. Try checking your connection
-              </p>
-            </div>
-          ) : ld ? (
-            <SkeletonLoader w={250} h={170} t={180} />
-          ) : (
-            trending &&
-            trending.results.map((movie) => (
-              <Link to={`/watch/${movie.id}`}>
-                <Card
-                  key={movie.id}
-                  movies={movie.backdrop_path}
-                  title={movie.original_title || movie.name}
-                  date={movie.release_date}
-                  w={250}
-                  h={170}
-                />
-              </Link>
-            ))
-          )}
-        </div>
-        <div className=" mt-2">
-          <p className="px-2 font-weight-bold">Popular TV Shows</p>
-
+        <div className={`${search === "" ? "" : "d-none"}`}>
+          <p className="px-2 font-weight-bold">Trending Movies </p>
           <div className="scroll-container">
-            {errr ? (
+            {err ? (
               <div className="container">
                 <p className="pt-3">
                   Error getting data. Try checking your connection
                 </p>
               </div>
-            ) : load ? (
-              <SkeletonLoader w={180} h={200} t={100} />
+            ) : ld ? (
+              <SkeletonLoader w={240} h={210} t={180} />
             ) : (
-              discover &&
-              discover.results.map((movie) => (
-                <Link to={`/tv/${movie.id}`}>
+              trending &&
+              trending.results.map((movie) => (
+                <Link
+                  to={`/watch/${movie.id}`}
+                  onClick={() =>
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    })
+                  }
+                >
                   <Card
-                    movies={movie.backdrop_path}
-                    title={movie.original_title || movie.name}
-                    date={movie.release_date}
-                    w={180}
-                    h={200}
-                  />
-                </Link>
-              ))
-            )}
-          </div>
-        </div>
-        <div>
-          <p className="px-2 font-weight-bold">You may also like</p>
-          <div className="scroll-container" style={{ paddingBottom: "100px" }}>
-            {error ? (
-              <div className="container" style={{ height: "200px" }}>
-                <p className="pt-3">
-                  Error getting data. Try checking your connection
-                </p>
-              </div>
-            ) : loading ? (
-              <SkeletonLoader w={180} h={200} t={100} />
-            ) : (
-              discover &&
-              discover.results.map((movie) => (
-                <Link to={`/watch/${movie.id}`}>
-                  <Card
+                    key={movie.id}
                     movies={movie.poster_path}
                     title={movie.original_title}
                     date={movie.release_date}
-                    w={180}
-                    h={200}
+                    w={240}
+                    h={210}
                   />
                 </Link>
               ))
             )}
           </div>
+          <div className="mt-3">
+            <p className="px-2 font-weight-bold">Popular Movies</p>
+
+            <div className="scroll-container">
+              {errr ? (
+                <div className="container">
+                  <p className="pt-3">
+                    Error getting data. Try checking your connection
+                  </p>
+                </div>
+              ) : load ? (
+                <SkeletonLoader w={180} h={200} t={100} />
+              ) : (
+                movies &&
+                movies.results.map((movie) => (
+                  <Link
+                    to={`/watch/${movie.id}`}
+                    onClick={() =>
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    <Card
+                      movies={movie.poster_path}
+                      title={movie.original_title}
+                      date={movie.release_date}
+                      w={180}
+                      h={200}
+                    />
+                  </Link>
+                ))
+              )}
+            </div>
+          </div>
+          <div>
+            <p className="px-2 font-weight-bold">You may also like</p>
+            <div
+              className="scroll-container"
+              style={{ paddingBottom: "100px" }}
+            >
+              {error ? (
+                <div className="container" style={{ height: "200px" }}>
+                  <p className="pt-3">
+                    Error getting data. Try checking your connection
+                  </p>
+                </div>
+              ) : loading ? (
+                <SkeletonLoader w={180} h={200} t={100} />
+              ) : (
+                discover &&
+                discover.results.map((movie) => (
+                  <Link
+                    to={`/watch/${movie.id}`}
+                    onClick={() =>
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      })
+                    }
+                  >
+                    <Card
+                      movies={movie.poster_path}
+                      title={movie.original_title}
+                      date={movie.release_date}
+                      w={180}
+                      h={200}
+                    />
+                  </Link>
+                ))
+              )}
+            </div>
+          </div>
         </div>
+
+        <div
+          className={`container-lg ${search === "" ? "d-none" : "d-flex"}`}
+          style={{
+            // display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: "100px",
+          }}
+        >
+          <p
+            className={`${
+              movies && movies.results.length === 0 ? "d-block" : "d-none"
+            }`}
+          >
+            {" "}
+            That movie got lost in the bermuda triangle
+          </p>
+          {error ? (
+            <div className="container" style={{ height: "100vh" }}>
+              <p className="pt-3">
+                Error getting data. Try checking your connection
+              </p>
+            </div>
+          ) : loading ? (
+            <div
+              className="mb-2"
+              style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+            >
+              <SkeletonLoader w={130} h={210} t={100} />
+            </div>
+          ) : (
+            movies &&
+            movies.results.map((movie) => (
+              <div className="" style={{ width: "130px" }} key={movie.id}>
+                <Link to={`/watch/${movie.id}`}>
+                  <div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt=""
+                      className="img-fluid"
+                      style={{ borderRadius: "10px" }}
+                    />
+                  </div>
+                  <p style={{ color: `${darkMode ? "white" : "black"}` }}>
+                    {movie.title}
+                  </p>
+                </Link>
+              </div>
+            ))
+          )}
+        </div>
+
         <Nav />
       </div>
     </>

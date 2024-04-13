@@ -20,7 +20,6 @@ const Bookmark = () => {
   console.log(bookm);
   return (
     <>
-      <p className="p-2"></p>
       <p className="p-2">
         Your Bookmarks <TurnedInOutlinedIcon style={{ color: "red" }} />
       </p>
@@ -30,8 +29,8 @@ const Bookmark = () => {
           display: "flex",
           flexWrap: "wrap",
           gap: "10px",
-          height: "100%",
           paddingBottom: "100px",
+          height: "100%",
         }}
       >
         {bookm.length === 0 ? (
@@ -42,7 +41,15 @@ const Bookmark = () => {
           bookm &&
           bookm.map((movie) => (
             <div className=" mb-2" style={{ width: "140px" }}>
-              <Link to={`/watch/${movie.id}`}>
+              <Link
+                to={`/watch/${movie.id}`}
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
+              >
                 <div className="div">
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

@@ -100,90 +100,101 @@ const Watch = () => {
 
   const { trailer } = FetchTrailer(Trailerurl);
   console.log(trailer);
-  const l = trailer && trailer.results.filter((x) => x.type === "Trailer");
-  const trailerLink = l[0].key;
+  const l = trailer?.results.filter(({ type }) =>
+    ["Trailer", "Teaser", "Clip"].includes(type)
+  );
+
+  const trailerLink = trailer && l[0].key;
   console.log(trailerLink);
   return (
     <>
-      <div>
-        <ToastContainer
-          style={{
-            margin: "20px",
-            height: "50px",
-          }}
-        />
-      </div>
-      {err ? (
-        <div className="container" style={{ height: "100vh" }}>
-          <p className="pt-3">
-            Error getting data. Try checking your connection!
-          </p>
+      <div className="pb-3">
+        <div>
+          <ToastContainer
+            style={{
+              margin: "20px",
+              height: "50px",
+            }}
+          />
         </div>
-      ) : load ? (
-        <WatchSkeleton />
-      ) : (
-        data && (
-          <div className="container-lg pt-2">
-            <div
-              className="movie-poster"
-              style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/w500/${data.poster_path})`,
-              }}
-            ></div>
-            <div className="movie-info pt-3">
-              <div className="mn">
-                <h4 onClick={() => addtoBookmark()}>{data.title}</h4>
-                <p>{data.genres[0].name}</p>
-              </div>
-              <div className="bk">
-                {" "}
-                <TurnedInOutlinedIcon onClick={() => addtoBookmark()} />
-              </div>
-            </div>
-            <div className="sypnopsis mt-3">
-              <p>{data.overview}</p>
-            </div>
-            <div className="rr">
-              <span className={`movie-tags ${darkMode ? "" : "dm"}`}>16+</span>
-              <span className={`movie-tags ${darkMode ? "" : "dm"}`}>
-                {releasedYear}
-              </span>
-              <span
-                className={`movie-tags "movie-tags d-flex align-items-center text-center" ${
-                  darkMode ? "" : "dm"
-                }`}
-              >
-                <GradeIcon style={{ fontSize: "16px", color: "goldenrod" }} />{" "}
-                {data.vote_average}
-              </span>
-              <span
-                className={` movie-tags d-flex align-items-center movie-tags text-center ${
-                  darkMode ? "" : "dm"
-                }`}
-              >
-                <WatchLaterIcon
-                  style={{ fontSize: "16px", color: "#9b9494" }}
-                />
-                {data.runtime}min
-              </span>
-            </div>
-            <div className="button mt-3 d-flex align-items-center ">
-              {/* <a className="watch-btn text-center btn">
-                {" "}
-              </a> */}
-              <a
-                href={`https://www.youtube.com/watch?v=${trailerLink}`}
-                className="watch-btn text-center btn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <PlayCircleIcon style={{ fontSize: "30px" }} />
-                Watch now
-              </a>
-            </div>
+        {err ? (
+          <div className="container" style={{ height: "100vh" }}>
+            <p className="pt-3">
+              Error getting data. Try checking your connection!
+            </p>
           </div>
-        )
-      )}
+        ) : load ? (
+          <WatchSkeleton />
+        ) : (
+          data && (
+            <div className="container-lg pt-2">
+              <div
+                className="movie-poster"
+                // style={{
+                //   backgroundImage:
+                //    `url(https://image.tmdb.org/t/p/w500/${data.poster_path})`,
+                // }}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                  style={{ width: "100%", height: "100%" }}
+                  alt=""
+                />
+              </div>
+              <div className="movie-info pt-3">
+                <div className="mn">
+                  <h4 onClick={() => addtoBookmark()}>{data.title}</h4>
+                  <p>{data.genres[0].name}</p>
+                </div>
+                <div className="bk">
+                  {" "}
+                  <TurnedInOutlinedIcon onClick={() => addtoBookmark()} />
+                </div>
+              </div>
+              <div className="sypnopsis mt-3">
+                <p>{data.overview}</p>
+              </div>
+              <div className="rr">
+                <span className={`movie-tags ${darkMode ? "" : "dm"}`}>
+                  16+
+                </span>
+                <span className={`movie-tags ${darkMode ? "" : "dm"}`}>
+                  {releasedYear}
+                </span>
+                <span
+                  className={`movie-tags "movie-tags d-flex align-items-center text-center" ${
+                    darkMode ? "" : "dm"
+                  }`}
+                >
+                  <GradeIcon style={{ fontSize: "16px", color: "goldenrod" }} />{" "}
+                  {data.vote_average}
+                </span>
+                <span
+                  className={` movie-tags d-flex align-items-center movie-tags text-center ${
+                    darkMode ? "" : "dm"
+                  }`}
+                >
+                  <WatchLaterIcon
+                    style={{ fontSize: "16px", color: "#9b9494" }}
+                  />
+                  {data.runtime}min
+                </span>
+              </div>
+              <div className="button mt-3  d-flex align-items-center justify-contents-center">
+                <a
+                  href={`https://www.youtube.com/watch?v=${trailerLink}`}
+                  className="watch-btn text-center btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <PlayCircleIcon style={{ fontSize: "30px" }} />
+                  Watch now
+                </a>
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </>
   );
 };

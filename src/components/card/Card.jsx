@@ -12,13 +12,20 @@ const Card = ({ movies, title, w, h, date }) => {
           width: `${w}px`,
           height: `${h}px`,
           borderRadius: "20px",
-          backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movies})`,
+          // backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movies})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           flexShrink: "0",
         }}
-      ></div>
+      >
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movies}`}
+          alt=""
+          // className="img-fluid"
+          style={{ borderRadius: "10px", width: "100%", height: "100%" }}
+        />
+      </div>
       <div className="movie-info ">
         <p
           className="text-start px-3 "

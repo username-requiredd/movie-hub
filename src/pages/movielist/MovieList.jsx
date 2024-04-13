@@ -6,10 +6,29 @@ import SkeletonLoader from "../../components/loader/Loader";
 import { useEffect, useState } from "react";
 const List = () => {
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const API_KEY = "bd6028a3ff6785a5ad7350ab134f1ee7";
   const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const searchEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
     setUrl(search !== "" ? searchEndpoint : url);
@@ -19,12 +38,11 @@ const List = () => {
   console.log(search, discover);
   return (
     <>
-      <div style={{ paddingBottom: "100px" }}>
+      <div style={{ paddingBottom: "100px", height: "100%" }}>
         <p className="p-2"></p>
         <div className="container wrapper">
           <div className="search">
             <input
-              onSubmit={(e) => e.preventDefault()}
               onChange={(e) => setSearch(e.target.value)}
               value={search}
               type="text"
@@ -54,7 +72,13 @@ const List = () => {
 
         <div
           className="container-lg"
-          style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           {error ? (
             <div className="container" style={{ height: "100vh" }}>

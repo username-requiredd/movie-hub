@@ -30,7 +30,6 @@ function App() {
         <Route path="list" element={<MoviesList />} />
         <Route path="bookmarks" element={<Bookmark />} />
         <Route path="login" element={<Login />} />
-
       </Route>
     )
   );
