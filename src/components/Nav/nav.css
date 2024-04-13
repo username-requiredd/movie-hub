@@ -21,12 +21,17 @@
     justify-content: center;
     align-items: center; 
   }
-  .nav-icons a {
-    color: #9b9494;
+  .nav-icons{
   }
-  
-  .active{
+  .notactive{
+    color: #9b9494;
+    /* color: black; */
+
+  }
+   .active {
+    /* color:green; */
     color: #fff;
+    /* background-color: white; */
   }
   .icon-list {
     list-style-type: none;

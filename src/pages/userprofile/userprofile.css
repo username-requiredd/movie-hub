@@ -128,3 +128,13 @@ p {
 }
 
 
+.fileInputButton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Additional styling as needed */
+  

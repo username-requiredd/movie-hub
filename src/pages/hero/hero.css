@@ -39,7 +39,7 @@
     color: #fff;
   }
   
-  .bottom-nav {
+  /* .bottom-nav {
     width: 90%;
     position: fixed;
     box-shadow: 0 4px 8px rgba(77, 75, 75, 0.3);
@@ -54,21 +54,21 @@
     justify-content: center;
     align-items: center;
   }
+   */
   
-  
-  .nav-icons {
+  /* .nav-icons {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center; 
-  }
-  .nav-icons a {
+  } */
+  /* .nav-icons a {
     color: #9b9494;
-  }
+  } */
   
-  .active{
+  /* .active{
     color: #fff;
-  }
+  } */
 
   .icon-list {
     list-style-type: none;

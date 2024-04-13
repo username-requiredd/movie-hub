@@ -4,42 +4,55 @@ import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-// import "./nav.css"
+import "./nav.css";
 const Nav = () => {
   const active = {
     color: "red",
   };
-  //   const [isActive, setIsactive] = useState(false);
   return (
     <>
       <div className="bottom-nav">
         <div className="nav-icons mx-auto">
           <ul className="icon-list">
-            <li
-            //   onClick={() => setIsactive(true)}
-            //   className={isActive ? "active" : ""}
-            >
+            <li>
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? active : "")}
+                className={({ isActive }) =>
+                  isActive ? "active" : "notactive"
+                }
               >
                 <HomeIcon />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/list">
+              <NavLink
+                to="/list"
+                className={({ isActive }) =>
+                  isActive ? "active" : "notactive"
+                }
+              >
                 <SmartDisplayOutlinedIcon
                 //   className={isActive ? "active" : ""}
                 />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/bookmarks">
+              <NavLink
+                to="/bookmarks"
+                className={({ isActive }) =>
+                  isActive ? "active" : "notactive"
+                }
+              >
                 <BookmarkBorderOutlinedIcon />
               </NavLink>
             </li>
             <li>
-              <NavLink to="/profile">
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "active" : "notactive"
+                }
+              >
                 <PermIdentityOutlinedIcon />
               </NavLink>
             </li>

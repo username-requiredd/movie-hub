@@ -27,7 +27,7 @@ const Hero = () => {
   const { darkMode } = useDarkMode();
   console.log("darkmood", darkMode);
   async function fetchData() {
-    const url = " https://api.themoviedb.org/3/movie/693134/videos";
+    const url = "https://api.themoviedb.org/3/movie/693134/videos?";
     const apiKey =
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZjEzOGYwZTdlYzg3NTMwMzE3NTI5MDZkMTU0NmJmMiIsInN1YiI6IjY2MTg1YWVjMGYwZGE1MDE3Y2RlYTcyZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.WnRTvQbUgOWMCbSK0ckZnkptQt1ny51LaHvuVU5RPbA";
 

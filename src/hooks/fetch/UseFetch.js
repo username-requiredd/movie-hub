@@ -9,8 +9,6 @@ const UseFetch = (url) => {
     const signal = controller.signal;
     async function discoverMovies() {
       try {
-        // const API_KEY = "bd6028a3ff6785a5ad7350ab134f1ee7";
-        // const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
         setLoading(true);
         const response = await fetch(url, { signal });
         if (!response.ok) {
@@ -32,7 +30,7 @@ const UseFetch = (url) => {
     }
     discoverMovies();
     return () => controller.abort();
-  }, []);
+  }, [url]);
   return { movies, loading, error };
 };
 

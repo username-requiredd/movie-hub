@@ -10,11 +10,11 @@ export const useDarkMode = () => useContext(DarkModeContext);
 export const DarkModeProvider = ({ children }) => {
   // State to manage dark mode
   const [darkMode, setDarkMode] = useState(() => {
-    // Retrieve dark mode preference from local storage
     const storedDarkMode = localStorage.getItem("darkMode");
-    return storedDarkMode ? storedDarkMode : false;
+    // Check if storedDarkMode is "true" (string) or null
+    return storedDarkMode === "true";
   });
-
+  
   // Update local storage and state when dark mode changes
   useEffect(() => {
     localStorage.setItem("darkMode", darkMode);
