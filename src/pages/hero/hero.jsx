@@ -25,7 +25,7 @@ const Hero = () => {
     loading: ld,
   } = UseFetch(trendingMovies);
   const { darkMode } = useDarkMode();
-  console.log(search, movies);
+  // console.log(search, movies);
   return (
     <>
       <Heading />
@@ -57,7 +57,7 @@ const Hero = () => {
                 </p>
               </div>
             ) : ld ? (
-              <SkeletonLoader w={240} h={210} t={180} />
+              <SkeletonLoader w={250} h={220} t={180} />
             ) : (
               trending &&
               trending.results.map((movie) => (
@@ -187,15 +187,21 @@ const Hero = () => {
             </div>
           ) : loading ? (
             <div
-              className="mb-2"
-              style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+              className="mb-2 container mx-auto"
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                alignItems: "center",
+                // justifyContent: "center",
+              }}
             >
-              <SkeletonLoader w={130} h={210} t={100} />
+              <SkeletonLoader w={140} h={210} t={100} />
             </div>
           ) : (
             movies &&
             movies.results.map((movie) => (
-              <div className="" style={{ width: "130px" }} key={movie.id}>
+              <div className="" style={{ width: "160px" }} key={movie.id}>
                 <Link to={`/watch/${movie.id}`}>
                   <div>
                     <img

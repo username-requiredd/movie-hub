@@ -59,16 +59,20 @@ const List = () => {
             />
           </div>
         </div>
-        <p className="p-2">{search ? "Search results" : "Discover Movies"}</p>
-        <p
-          className={`${
-            discover && discover.results.length === 0 ? "p-2" : ""
-          }`}
-        >
-          {discover && discover.results.length === 0
-            ? "That movie got lost in the bermuda triangle :)"
-            : ""}
-        </p>
+        <div className="container">
+          <p className="p-2 ">
+            {search ? "Search results" : "Discover Movies"}
+          </p>
+          <p
+            className={`${
+              discover && discover.results.length === 0 ? "p-2" : ""
+            }`}
+          >
+            {discover && discover.results.length === 0
+              ? "That movie got lost in the bermuda triangle :)"
+              : ""}
+          </p>
+        </div>
 
         <div
           className="container-lg"
@@ -88,17 +92,17 @@ const List = () => {
             </div>
           ) : loading ? (
             <div
-              className="mb-2"
+              className="mb-2 mx-auto container"
               style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
             >
-              <SkeletonLoader w={140} h={210} t={100} />
+              <SkeletonLoader w={160} h={210} t={100} />
             </div>
           ) : (
             discover &&
             discover.results.map((movie) => (
               <div
                 className=" mx-auto"
-                style={{ width: "140px" }}
+                style={{ width: "160px" }}
                 key={movie.id}
               >
                 <Link to={`/watch/${movie.id}`}>
