@@ -44,6 +44,7 @@ const Hero = () => {
               border: "1px solid #18191a",
               outline: "#fff",
               color: `${darkMode ? "white" : "black"}`,
+              maxWidth: "400px",
             }}
           />
         </div>
@@ -75,8 +76,8 @@ const Hero = () => {
                     movies={movie.poster_path}
                     title={movie.original_title}
                     date={movie.release_date}
-                    w={240}
-                    h={210}
+                    w={250}
+                    h={200}
                   />
                 </Link>
               ))
@@ -187,7 +188,7 @@ const Hero = () => {
             </div>
           ) : loading ? (
             <div
-              className="mb-2 container mx-auto"
+              className="mb-2"
               style={{
                 display: "flex",
                 flexWrap: "wrap",
@@ -196,12 +197,17 @@ const Hero = () => {
                 justifyContent: "center",
               }}
             >
-              <SkeletonLoader w={140} h={210} t={100} />
+              <SkeletonLoader
+                w={120}
+                h={210}
+                t={70}
+                style={{ flex: "1 1 200px" }}
+              />
             </div>
           ) : (
             movies &&
             movies.results.map((movie) => (
-              <div className="" style={{ width: "160px" }} key={movie.id}>
+              <div className="" style={{ flex: "1 1 100px" }} key={movie.id}>
                 <Link to={`/watch/${movie.id}`}>
                   <div>
                     <img

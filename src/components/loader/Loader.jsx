@@ -14,7 +14,7 @@ const SkeletonLoader = ({ w, h, t }) => {
           sx={{ bgcolor: darkMode ? "grey.800" : "grey.300" }}
           width={w}
           height={h}
-          style={{ borderRadius: "15px" }}
+          style={{ borderRadius: "15px", minWidth: "100px" }}
         />
 
         <Skeleton

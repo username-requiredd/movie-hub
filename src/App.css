@@ -2,14 +2,19 @@
   background-color: #18191a;
   color: #fff;
   transition: 0.3s ease-out;
-  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;  
 }
 .light{
   background-color: #fff;
   color: black;
   transition: 0.3s ease-in;
-  height: 100%;
-
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 
 }
 

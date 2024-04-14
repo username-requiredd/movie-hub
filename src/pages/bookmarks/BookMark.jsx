@@ -29,18 +29,18 @@ const Bookmark = () => {
           display: "flex",
           flexWrap: "wrap",
           gap: "10px",
-          paddingBottom: "100px",
-          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         {bookm.length === 0 ? (
-          <div style={{ height: "100vh" }}>
+          <div>
             <p>You have no Bookmark.</p>
           </div>
         ) : (
           bookm &&
           bookm.map((movie) => (
-            <div className=" mb-2" style={{ width: "140px" }}>
+            <div className=" mb-2" style={{ flex: "1 1 100px" }}>
               <Link
                 to={`/watch/${movie.id}`}
                 onClick={() =>
