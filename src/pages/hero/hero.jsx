@@ -193,7 +193,7 @@ const Hero = () => {
                 flexWrap: "wrap",
                 gap: "10px",
                 alignItems: "center",
-                // justifyContent: "center",
+                justifyContent: "center",
               }}
             >
               <SkeletonLoader w={140} h={210} t={100} />
