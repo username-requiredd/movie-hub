@@ -107,6 +107,7 @@ const Hero = () => {
                     }
                   >
                     <Card
+                      key={movie.id}
                       movies={movie.poster_path}
                       title={movie.original_title}
                       date={movie.release_date}
@@ -145,6 +146,7 @@ const Hero = () => {
                     }
                   >
                     <Card
+                      key={movie.id}
                       movies={movie.poster_path}
                       title={movie.original_title}
                       date={movie.release_date}

@@ -17,7 +17,7 @@ import Profile from "./pages/userprofile/Userprofile"
 import MoviesList from "./pages/movielist/MovieList"
 import { useDarkMode } from "./contex/Darkmoodcontex";
 import Bookmark from "./pages/bookmarks/BookMark";
-import Login from "./pages/login/Login";
+import Error404 from "./pages/errorpage/Error";
 function App() {
   const {darkMode, setDarkMode} = useDarkMode()
   const router = createBrowserRouter(
@@ -29,7 +29,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="list" element={<MoviesList />} />
         <Route path="bookmarks" element={<Bookmark />} />
-        <Route path="login" element={<Login />} />
+        <Route path="*" element={< Error404/>} />
       </Route>
     )
   );
