@@ -38,7 +38,12 @@ const List = () => {
   console.log(search, discover);
   return (
     <>
-      <div style={{ paddingBottom: "100px", height: "100%" }}>
+      <div
+        style={{
+          paddingBottom: "100px",
+          height: discover && discover.results.length === 0 ? "100vh" : "100%",
+        }}
+      >
         <p className="p-2"></p>
         <div className="container wrapper">
           <div className="search">
@@ -93,9 +98,15 @@ const List = () => {
           ) : loading ? (
             <div
               className="mb-2 mx-auto container"
-              style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <SkeletonLoader w={160} h={210} t={100} />
+              <SkeletonLoader w={150} h={210} t={100} />
             </div>
           ) : (
             discover &&

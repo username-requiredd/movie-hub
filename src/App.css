@@ -2,19 +2,15 @@
   background-color: #18191a;
   color: #fff;
   transition: 0.3s ease-out;
+  height: 100%;
 }
 .light{
   background-color: #fff;
   color: black;
   transition: 0.3s ease-in;
+  height: 100%;
+
 
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+
