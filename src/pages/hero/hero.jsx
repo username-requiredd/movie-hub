@@ -58,7 +58,7 @@ const Hero = () => {
                 </p>
               </div>
             ) : ld ? (
-              <SkeletonLoader w={250} h={220} t={180} />
+              <SkeletonLoader w={275} h={210} t={180} />
             ) : (
               trending &&
               trending.results.map((movie) => (
@@ -76,8 +76,8 @@ const Hero = () => {
                     movies={movie.poster_path}
                     title={movie.original_title}
                     date={movie.release_date}
-                    w={250}
-                    h={200}
+                    w={275}
+                    h={210}
                   />
                 </Link>
               ))
@@ -207,7 +207,7 @@ const Hero = () => {
           ) : (
             movies &&
             movies.results.map((movie) => (
-              <div className="" style={{ flex: "1 1 100px" }} key={movie.id}>
+              <div className="" style={{ flex: "1 1 150px" }} key={movie.id}>
                 <Link to={`/watch/${movie.id}`}>
                   <div>
                     <img

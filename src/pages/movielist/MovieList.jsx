@@ -19,6 +19,7 @@ const List = () => {
         document.documentElement.offsetHeight
       ) {
         setPage((prevPage) => prevPage + 1);
+        console.log(url);
       }
     };
 
@@ -27,7 +28,15 @@ const List = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [page]);
+
+  useEffect(() => {
+    const newUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`;
+    setUrl(newUrl);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
+  console.log(page);
 
   useEffect(() => {
     const searchEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
@@ -35,7 +44,7 @@ const List = () => {
   }, [url, search]);
   const { darkMode } = useDarkMode();
   const { movies: discover, error, loading } = UseFetch(url);
-  console.log(search, discover);
+  console.log(discover);
   return (
     <>
       <div
@@ -107,7 +116,7 @@ const List = () => {
               }}
             >
               <SkeletonLoader
-                w={120}
+                w={140}
                 h={210}
                 t={70}
                 style={{ flex: "1 1 200px" }}
@@ -118,7 +127,7 @@ const List = () => {
             discover.results.map((movie) => (
               <div
                 className=" mx-auto"
-                style={{ flex: "1 1 100px" }}
+                style={{ flex: "1 1 150px" }}
                 key={movie.id}
               >
                 <Link to={`/watch/${movie.id}`}>

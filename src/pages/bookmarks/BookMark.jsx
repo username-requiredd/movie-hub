@@ -40,7 +40,7 @@ const Bookmark = () => {
         ) : (
           bookm &&
           bookm.map((movie) => (
-            <div className=" mb-2" style={{ flex: "1 1 100px" }}>
+            <div className=" mb-2" style={{ flex: "1 1 150px" }}>
               <Link
                 to={`/watch/${movie.id}`}
                 onClick={() =>
