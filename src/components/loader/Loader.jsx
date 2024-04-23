@@ -6,7 +6,7 @@ const SkeletonLoader = ({ w, h, t }) => {
   console.log(darkMode);
   const skeletons = [];
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 8; i++) {
     skeletons.push(
       <div key={i} className="div">
         <Skeleton

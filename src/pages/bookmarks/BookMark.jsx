@@ -31,7 +31,7 @@ const Bookmark = () => {
             flexWrap: "wrap",
             gap: "10px",
             alignItems: "center",
-            // justifyContent: "center",
+            justifyContent: "center",
           }}
         >
           {bookm.length === 0 ? (

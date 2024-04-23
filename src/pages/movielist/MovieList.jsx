@@ -23,10 +23,22 @@ const List = () => {
       }
     };
 
+    const handleTouchMove = (event) => {
+      const { clientHeight, scrollTop, scrollHeight } =
+        document.documentElement;
+      const isNearBottom = scrollTop + clientHeight >= scrollHeight * 0.9;
+
+      if (isNearBottom) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("touchmove", handleTouchMove);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
