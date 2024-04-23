@@ -1,9 +1,10 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
 import UseFetch from "../../hooks/fetch/UseFetch";
-import { Link } from "react-router-dom";
 import { useDarkMode } from "../../contex/Darkmoodcontex";
 import SkeletonLoader from "../../components/loader/Loader";
-import { useEffect, useState } from "react";
+
 const List = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -19,7 +20,6 @@ const List = () => {
         document.documentElement.offsetHeight
       ) {
         setPage((prevPage) => prevPage + 1);
-        console.log(url);
       }
     };
 
@@ -28,7 +28,7 @@ const List = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page]);
+  }, []);
 
   useEffect(() => {
     const newUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`;
@@ -36,15 +36,14 @@ const List = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [page]);
 
-  console.log(page);
-
   useEffect(() => {
     const searchEndpoint = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
     setUrl(search !== "" ? searchEndpoint : url);
   }, [url, search]);
+
   const { darkMode } = useDarkMode();
   const { movies: discover, error, loading } = UseFetch(url);
-  console.log(discover);
+
   return (
     <>
       <div
@@ -126,7 +125,7 @@ const List = () => {
             discover &&
             discover.results.map((movie) => (
               <div
-                className=" mx-auto"
+                className="mx-auto"
                 style={{ flex: "1 1 150px" }}
                 key={movie.id}
               >

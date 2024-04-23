@@ -20,57 +20,59 @@ const Bookmark = () => {
   console.log(bookm);
   return (
     <>
-      <p className="p-2">
-        Your Bookmarks <TurnedInOutlinedIcon style={{ color: "red" }} />
-      </p>
-      <div
-        className="container-lg"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "10px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {bookm.length === 0 ? (
-          <div>
-            <p>You have no Bookmark.</p>
-          </div>
-        ) : (
-          bookm &&
-          bookm.map((movie) => (
-            <div className=" mb-2" style={{ flex: "1 1 150px" }}>
-              <Link
-                to={`/watch/${movie.id}`}
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  })
-                }
-              >
-                <div className="div">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt=""
-                    className="img-fluid"
-                    style={{ borderRadius: "10px" }}
-                  />
-                </div>
-                <p style={{ color: `${darkMode ? "white" : "black"}` }}>
-                  {movie.title}
-                </p>
-              </Link>
-              {/* <br /> */}
-              <TurnedInOutlinedIcon
-                style={{ color: "red" }}
-                onClick={() => removeBookmark(movie.id)}
-              />
+      <div className="container-lg" style={{ paddingBottom: "100px" }}>
+        <p className="p-2">
+          Your Bookmarks <TurnedInOutlinedIcon style={{ color: "red" }} />
+        </p>
+        <div
+          className="container-lg"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            alignItems: "center",
+            // justifyContent: "center",
+          }}
+        >
+          {bookm.length === 0 ? (
+            <div>
+              <p>You have no Bookmark.</p>
             </div>
-          ))
-        )}
-        <Nav />
+          ) : (
+            bookm &&
+            bookm.map((movie) => (
+              <div className=" mb-2" style={{ width: "150px" }}>
+                <Link
+                  to={`/watch/${movie.id}`}
+                  onClick={() =>
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    })
+                  }
+                >
+                  <div className="div">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt=""
+                      className="img-fluid"
+                      style={{ borderRadius: "10px" }}
+                    />
+                  </div>
+                  <p style={{ color: `${darkMode ? "white" : "black"}` }}>
+                    {movie.title}
+                  </p>
+                </Link>
+                {/* <br /> */}
+                <TurnedInOutlinedIcon
+                  style={{ color: "red" }}
+                  onClick={() => removeBookmark(movie.id)}
+                />
+              </div>
+            ))
+          )}
+          <Nav />
+        </div>
       </div>
     </>
   );
