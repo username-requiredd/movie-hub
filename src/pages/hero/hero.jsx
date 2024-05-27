@@ -76,8 +76,8 @@ const Hero = () => {
                     movies={movie.poster_path}
                     title={movie.original_title}
                     date={movie.release_date}
-                    w={275}
-                    h={210}
+                    w={265}
+                    h={200}
                   />
                 </Link>
               ))

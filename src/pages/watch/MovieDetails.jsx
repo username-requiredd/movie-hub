@@ -100,12 +100,11 @@ const Watch = () => {
 
   const { trailer } = FetchTrailer(Trailerurl);
   console.log(trailer);
-  const l = trailer?.results.filter(({ type }) =>
-    ["Trailer", "Teaser", "Clip"].includes(type)
-  );
-
-  const trailerLink = trailer && l[0].key;
-  console.log(trailerLink);
+  const videoType = ["Trailer", "Teaser", "Clip"];
+  const videoURL =
+    trailer && trailer.results
+      ? trailer.results.filter(({ type }) => videoType.includes(type))
+      : [];
   return (
     <>
       <div className="pb-3">
@@ -182,7 +181,9 @@ const Watch = () => {
               </div>
               <div className="button mt-3  d-flex align-items-center justify-contents-center">
                 <a
-                  href={`https://www.youtube.com/watch?v=${trailerLink}`}
+                  href={`https://www.youtube.com/watch?v=${
+                    videoURL && videoURL.length !== 0 ? videoURL[0].key : ""
+                  }`}
                   className="watch-btn text-center btn"
                   target="_blank"
                   rel="noopener noreferrer"
