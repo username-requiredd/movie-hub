@@ -127,7 +127,7 @@ const List = () => {
               }}
             >
               <SkeletonLoader
-                w={140}
+                w={150}
                 h={210}
                 t={70}
                 style={{ flex: "1 1 200px" }}
